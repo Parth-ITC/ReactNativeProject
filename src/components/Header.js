@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
 const Header = props => {
-  const {title, left, right, onRightPress, onLeftPress,rightBtntitle,rightIcon,leftIcon} = props
+  const {title, left, right, onRightPress, onLeftPress,rightIcon,leftIcon} = props
   return (
     <View style={styles.headerView}>
       <View style={{flex: 1, alignItems: 'center'}}>
@@ -10,13 +10,11 @@ const Header = props => {
       </View>
       {right && (
         <TouchableOpacity onPress={onRightPress} style={[styles.rightbtn,styles.shadowBtn]}>
-          {/* <Text>{rightBtntitle ?? 'Add'}</Text> */}
           <Image source={rightIcon} style={styles.imageView} />
         </TouchableOpacity>
       )}
        {left && (
         <TouchableOpacity onPress={onLeftPress} style={[styles.leftbtn,styles.shadowBtn]}>
-          {/* <Text>Back</Text> */}
           <Image source={leftIcon} style={styles.imageView} />
         </TouchableOpacity>
       )}
