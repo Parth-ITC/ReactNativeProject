@@ -7,14 +7,13 @@ import {NavigationContainer} from '@react-navigation/native';
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Root />
-      </NavigationContainer> */}
-      <View style={{flex: 1, marginHorizontal: 10}}>
+      </NavigationContainer>
+      {/* <View style={{flex: 1, marginHorizontal: 10}}>
         <Text>Main Component</Text>
         <ClassC type={'jk'} />
-        {/* <FunctionC name={'Parth'} company={'ITC'} /> */}
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

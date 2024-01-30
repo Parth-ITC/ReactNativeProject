@@ -1,4 +1,4 @@
-import {Alert, FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import Header from '../../components/Header';
 import {ICONS, bookDetails} from '../../constants';
@@ -9,7 +9,6 @@ import {useState} from 'react';
 const ListScreen = ({route, navigation}) => {
   const [isModalopen, setIsmodalOpen] = useState(false);
   const [bookData, setBookdata] = useState(bookDetails);
-
 
   const renderBooks = ({item: booksItem, index}) => {
     return (
@@ -40,6 +39,7 @@ const ListScreen = ({route, navigation}) => {
           renderItem={renderBooks}
         />
       </View>
+      <Button title='DeepView' onPress={()=>{navigation.navigate('DeepScreen')}} />
      {isModalopen && <ModalView isModalopen={isModalopen} onPress={onModalChange} onPressSubmit={addNewData} />}
     </View>
   );
