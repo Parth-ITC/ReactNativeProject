@@ -11,7 +11,9 @@ const AuthStack = () => {
   };
   return (
     <Stack.Navigator screenOptions={navigationOptions}>
-      <Stack.Screen component={Login} name="Login" />
+      <Stack.Group>
+        <Stack.Screen component={Login} name="Login" />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

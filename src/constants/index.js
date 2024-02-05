@@ -100,9 +100,23 @@ export const bookDetails = [
   },
 ];
 
+export const FONTS = {
+  kalam_font: 'Kalam-Bold',
+};
+
 export const ICONS = {
   back_icon: require('../assets/icons/back_arrow.png'),
   plus_icon: require('../assets/icons/plus_sign.png'),
-  close_icon: require('../assets/icons/cross_sign.png')
-}
+  close_icon: require('../assets/icons/cross_sign.png'),
+};
 
+export const IMAGES = {
+  logo: require('../assets/images/logo.png'),
+};
+
+export const COLORS = {
+  headerColor: '#E5D4FF',
+  darkTextcolor: '#6C22A6',
+  lightBackground: '#F1EAFF',
+  btnColor: '#D0A2F7',
+};

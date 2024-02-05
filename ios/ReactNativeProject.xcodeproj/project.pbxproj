@@ -13,6 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1CC6DCFB1DDB4FA7801E592B /* Sixtyfour_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73D029C3ACE6448CACA6472E /* Sixtyfour_Regular.ttf */; };
+		36143B78B300413789CDC017 /* Kalam-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5EA8EB0380489B8EC6AC25 /* Kalam-Bold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-ReactNativeProject-ReactNativeProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeProject-ReactNativeProjectTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B21926222B6969D300191583 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = B21926212B6969D300191583 /* Fonts */; };
@@ -41,6 +42,7 @@
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeProject-ReactNativeProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeProject-ReactNativeProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-ReactNativeProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeProject.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeProject/Pods-ReactNativeProject.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ReactNativeProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeProject.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeProject/Pods-ReactNativeProject.release.xcconfig"; sourceTree = "<group>"; };
+		5B5EA8EB0380489B8EC6AC25 /* Kalam-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Kalam-Bold.ttf"; path = "../src/assets/fonts/Kalam-Bold.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ReactNativeProject-ReactNativeProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeProject-ReactNativeProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeProject-ReactNativeProjectTests/Pods-ReactNativeProject-ReactNativeProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ReactNativeProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D029C3ACE6448CACA6472E /* Sixtyfour_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Sixtyfour_Regular.ttf; path = ../src/assets/fonts/Sixtyfour_Regular.ttf; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				73D029C3ACE6448CACA6472E /* Sixtyfour_Regular.ttf */,
+				5B5EA8EB0380489B8EC6AC25 /* Kalam-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1CC6DCFB1DDB4FA7801E592B /* Sixtyfour_Regular.ttf in Resources */,
 				B21926222B6969D300191583 /* Fonts in Resources */,
+				36143B78B300413789CDC017 /* Kalam-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

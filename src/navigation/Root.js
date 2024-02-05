@@ -1,22 +1,28 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DetailsScreen from '../screens/DetailsScreen';
-import DrawerNav, { DeepScreen } from './Drawer';
-import TabNav from './TabNav';
 import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
-import ClassC from '../components/ClassC';
+import AppStack from './AppStack';
+import {SafeAreaView, StatusBar, Text} from 'react-native';
+import useAuth from '../hooks/useAuth';
+import {COLORS} from '../constants';
+import {NavigationContainer} from '@react-navigation/native';
+import SplashScreen from '../screens/Splash/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
 const Root = () => {
+  const {authData, loading} = useAuth();
+  if (loading) {
+    return (
+      <SplashScreen />
+    );
+  }
   return (
-    // <>
-    // <ClassC />
-    // </>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
-        <Stack.Screen name='Auth' component={AuthStack} />
-        <Stack.Screen name='Home' component={HomeStack} />
-      </Stack.Navigator>
+    <SafeAreaView style={{flex: 1}}>
+      <StatusBar/>
+      <NavigationContainer>
+        {authData?.token ? <AppStack /> : <AuthStack />}
+      </NavigationContainer>
+    </SafeAreaView>
   );
 };
 

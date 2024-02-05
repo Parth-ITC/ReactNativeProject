@@ -9,7 +9,7 @@ const BookView = (props) => {
       onPress={()=>{onPress(item)}}
       style={[styles.outerView, styles.shadowBtn]}>
         <Text style={styles.boldText}>Title: <Text style={styles.lightfont}>{item?.title}</Text></Text>
-        <Text style={styles.boldText}>Description: <Text style={styles.lightfont}>{item?.description}</Text></Text>
+        <Text style={styles.boldText}>Description: <Text style={styles.lightfont}>{item?.description ?? item.body}</Text></Text>
     </TouchableOpacity>
   );
 };

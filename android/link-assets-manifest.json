@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Kalam-Bold.ttf",
+      "sha1": "2a559015d425e2197d24dd64ec5f575b713c008f"
+    },
+    {
       "path": "src/assets/fonts/Sixtyfour_Regular.ttf",
       "sha1": "4639a9b4d2518bcb9f95d3dfc2fb9c4c8f658fcd"
     }

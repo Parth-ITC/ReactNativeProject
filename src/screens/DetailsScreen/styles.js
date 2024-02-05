@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   lightfont: {
     fontSize: 12,
     fontWeight: '300',
-    color:'#6C22A6'
+    color:'#6C22A6',
   },
 });
 export default styles;

@@ -6,18 +6,19 @@ import DetailsScreen from '../screens/DetailsScreen';
 import ListScreen from '../screens/ListScreen';
 const Stack = createNativeStackNavigator();
 
-const HomeStack = () => {
+const AppStack = () => {
   const navigationOptions = {
     headerShown: false,
   };
   return (
     <Stack.Navigator screenOptions={navigationOptions}>
       <Stack.Screen component={DrawerNav} name="Dash" />
-      <Stack.Screen component={ListScreen} name='List' />
+      <Stack.Screen component={ListScreen} name="List" />
+      <Stack.Screen component={DetailsScreen} name="Details" />
     </Stack.Navigator>
   );
 };
 
-export default HomeStack;
+export default AppStack;
 
 const styles = StyleSheet.create({});
