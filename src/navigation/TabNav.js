@@ -16,7 +16,7 @@ const TabNav = props => {
       screenOptions={{headerShown: false, tabBarActiveTintColor: '#6C22A6'}}>
       <Tab.Screen
         name="Dashboard"
-        component={ListScreen}
+        component={Dashboard} 
         options={{
           tabBarLabel: 'Dashboard',
           tabBarIcon: ({color, size}) => (

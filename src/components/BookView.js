@@ -3,6 +3,7 @@ import React from 'react';
 
 const BookView = (props) => {
     const {item,onPress} = props
+    // console.log('rerener',item.id);
   return (
     <TouchableOpacity
       activeOpacity={0.5}

@@ -26,6 +26,7 @@ export const getData = (path, params) => {
   return new Promise(async (resolve, reject) => {
     try {
       const {data, status} = await apiInstance.get(path, {params});
+      console.log(data);
       if (status == 200) {
         resolve(handleResponse(data));
       }

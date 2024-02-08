@@ -21,11 +21,11 @@ const ListScreen = ({route, navigation}) => {
   const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
-    setIsloading(true);
     fetchData();
   }, []);
 
   const fetchData = async () => {
+    setIsloading(true);
     try {
       const response = await getData('posts');
       // console.log(response,'SUCCESSS');

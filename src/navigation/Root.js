@@ -6,6 +6,7 @@ import useAuth from '../hooks/useAuth';
 import {COLORS} from '../constants';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from '../screens/Splash/SplashScreen';
+import { navigationRef } from './rootNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,7 @@ const Root = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <StatusBar/>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         {authData?.token ? <AppStack /> : <AuthStack />}
       </NavigationContainer>
     </SafeAreaView>

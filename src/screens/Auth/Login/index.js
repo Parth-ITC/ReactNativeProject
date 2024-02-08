@@ -12,15 +12,14 @@ import styles from './styles';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {IMAGES} from '../../../constants';
 import useAuth from '../../../hooks/useAuth';
+import {useSelector} from 'react-redux';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = useAuth();
-
-  const onSignIn = () =>{
-    
-  }
+  const {value} = useSelector(state => state.counter);
+  const onSignIn = () => {};
 
   return (
     <KeyboardAwareScrollView bounces={false} style={styles.container}>
