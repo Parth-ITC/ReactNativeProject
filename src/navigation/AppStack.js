@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DrawerNav, {DeepScreen} from './Drawer';
 import DetailsScreen from '../screens/DetailsScreen';
 import ListScreen from '../screens/ListScreen';
+import CartScreen from '../screens/CartScreen';
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
@@ -15,6 +16,8 @@ const AppStack = () => {
       <Stack.Screen component={DrawerNav} name="Dash" />
       <Stack.Screen component={ListScreen} name="List" />
       <Stack.Screen component={DetailsScreen} name="Details" />
+      <Stack.Screen component={CartScreen} name="Cart" />
+
     </Stack.Navigator>
   );
 };

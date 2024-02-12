@@ -1,8 +1,15 @@
 import axios from 'axios';
-import {baseURL} from './config';
+import {baseURL, fruitURL} from './config';
 
 const apiInstance = axios.create({
   baseURL: baseURL,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+});
+const fruitapiInstance = axios.create({
+  baseURL: fruitURL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -22,13 +29,19 @@ const handleError = error => {
   }
 };
 
-export const getData = (path, params) => {
+export const getData = (path, params,isfruit) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {data, status} = await apiInstance.get(path, {params});
-      console.log(data);
-      if (status == 200) {
-        resolve(handleResponse(data));
+      if(isfruit){
+        const {data, status} = await fruitapiInstance.get(path, {params});
+        if (status == 200) {
+          resolve(handleResponse(data));
+        }
+      }else{
+        const {data, status} = await apiInstance.get(path, {params});
+        if (status == 200) {
+          resolve(handleResponse(data));
+        }
       }
       resolve([]);
     } catch (error) {

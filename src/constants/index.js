@@ -108,6 +108,7 @@ export const ICONS = {
   back_icon: require('../assets/icons/back_arrow.png'),
   plus_icon: require('../assets/icons/plus_sign.png'),
   close_icon: require('../assets/icons/cross_sign.png'),
+  cart_icon: require('../assets/icons/shopping_cart.png')
 };
 
 export const IMAGES = {
@@ -120,3 +121,27 @@ export const COLORS = {
   lightBackground: '#F1EAFF',
   btnColor: '#D0A2F7',
 };
+
+export const FRUITS = [
+    {
+      "name" : "Apple",
+      "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/265px-Red_Apple.jpg",
+      "price" : 35,
+    },
+    {
+      "name" : "Banana",
+      "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/320px-Bananas_white_background_DS.jpg",
+      "price" : 12
+    },
+    {
+      "name" : "Grapes",
+      "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg",
+      "weight": 0.1,
+      "price" : 45
+    },
+    {
+      "name" : "Pineapple",
+      "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/286px-Pineapple_and_cross_section.jpg",
+      "price" : 200
+    }
+  ]

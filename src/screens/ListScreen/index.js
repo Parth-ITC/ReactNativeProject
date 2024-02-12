@@ -14,6 +14,7 @@ import BookView from '../../components/BookView';
 import ModalView from '../../components/ModalView';
 import {useEffect, useState} from 'react';
 import {getData, getDatadiff} from '../../api';
+import storage from '../../helpers/storage';
 
 const ListScreen = ({route, navigation}) => {
   const [isModalopen, setIsmodalOpen] = useState(false);
@@ -26,16 +27,23 @@ const ListScreen = ({route, navigation}) => {
 
   const fetchData = async () => {
     setIsloading(true);
-    try {
-      const response = await getData('posts');
-      // console.log(response,'SUCCESSS');
+    const books = await storage.get('BOOKS');
+    if (books) {
+      setBookdata(books);
       setIsloading(false);
-      if (response) {
-        setBookdata(response);
+    } else {
+      try {
+        const response = await getData('posts');
+        // console.log(response,'SUCCESSS');
+        setIsloading(false);
+        if (response) {
+          setBookdata(response);
+          storage.set('BOOKS', response);
+        }
+      } catch (error) {
+        setIsloading(false);
+        console.log(error, '`errrorooro');
       }
-    } catch (error) {
-      setIsloading(false);
-      console.log(error,'`errrorooro');
     }
   };
 
@@ -53,6 +61,7 @@ const ListScreen = ({route, navigation}) => {
   const onModalChange = () => setIsmodalOpen(previousState => !previousState);
   const addNewData = newData => {
     setBookdata([newData, ...bookData]);
+    storage.set('BOOKS', [newData, ...bookData]);
     onModalChange();
   };
 
@@ -65,7 +74,9 @@ const ListScreen = ({route, navigation}) => {
         onRightPress={onModalChange}
       />
       <View style={{flex: 1}}>
-        {isLoading ? <ActivityIndicator animating size={'large'} />:
+        {isLoading ? (
+          <ActivityIndicator animating size={'large'} />
+        ) : (
           <FlatList
             data={bookData}
             extraData={bookData}
@@ -73,7 +84,7 @@ const ListScreen = ({route, navigation}) => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={renderBooks}
           />
-        }
+        )}
       </View>
       {/* <Button title='DeepView' onPress={()=>{navigation.navigate('DeepScreen')}} /> */}
       {isModalopen && (

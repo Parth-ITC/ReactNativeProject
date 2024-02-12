@@ -26,7 +26,7 @@ const TabNav = props => {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ListScreen}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({color, size}) => (
