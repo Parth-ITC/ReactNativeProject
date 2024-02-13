@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import thunk from 'redux-thunk';
 import counterReducer from './redux/slices/counterSlice';
-import authReducer from './redux/slices/authSlice';
+// import authReducer from './redux/slices/authSlice';
 import cartReducer from './redux/slices/cartSlice';
 import {createLogger} from 'redux-logger';
 
@@ -31,7 +31,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  auth: authReducer,
   cart:cartReducer
 });
 
@@ -41,15 +40,15 @@ export const store = configureStore({
   reducer: persistedReducer,
   //   middleware: [thunk],
   //   devTools: process.env.NODE_ENV !== 'production',
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+  // middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 
-  // middleware: getDefaultMiddleware => [
-  //   ...getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //     },
-  //   }),
-  // ],
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+  ],
 });
 
 export const persistor = persistStore(store);

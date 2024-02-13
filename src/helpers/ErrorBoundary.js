@@ -11,7 +11,7 @@ export class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log(errorInfo);
+    console.log(errorInfo,error);
     throw new Error(errorInfo)
   }
 
@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component {
       return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text>
-            we know there is an error, we are working on it, come back here soon
+            Ooops! Something is wrong.
           </Text>
         </View>
       );
