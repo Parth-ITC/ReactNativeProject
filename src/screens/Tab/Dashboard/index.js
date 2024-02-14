@@ -8,6 +8,8 @@ import storage from '../../../helpers/storage';
 import {FRUITS, ICONS} from '../../../constants';
 import FruitList from '../../../components/FruitList';
 import {addToCart, removeCart} from '../../../redux/slices/cartSlice';
+import crashlytics from '@react-native-firebase/crashlytics';
+
 const Dashboard = ({navigation}) => {
   const [fruitData, setFruitdata] = useState([]);
   const cartData = useSelector(state => state.cart);
