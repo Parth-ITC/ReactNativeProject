@@ -1139,7 +1139,7 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - RNSentry (5.18.0):
+  - RNSentry (5.19.0):
     - hermes-engine
     - React-Core
     - React-hermes
@@ -1434,7 +1434,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 28bdf9a766c081e603120f79e925b72817c751c6
   RNReanimated: 1873432b0b86d0224bbe19aacea7ad8eef4e7518
   RNScreens: 2b73f5eb2ac5d94fbd61fa4be0bfebd345716825
-  RNSentry: eefa12fa65b37dd71f54371720f9fcddcd17be2f
+  RNSentry: 98df59e833edc1975d8628fb8c5345773c79974a
   RNVectorIcons: ee070291bc6c7b4c880181b214534d4657ea1905
   Sentry: d9f99f9cc13777c5d938650c1e1c85047bb4f0d1
   SentryPrivate: 839b1e58addf58624087a80b2628e543193fa8ef
