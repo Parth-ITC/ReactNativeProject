@@ -16,6 +16,7 @@ import cartReducer from './redux/slices/cartSlice';
 import {createLogger} from 'redux-logger';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import reduxStorage from './reduxStorage';
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 const logger = createLogger({
   predicate: () => isDebuggingInChrome,
@@ -26,7 +27,7 @@ const logger = createLogger({
 const persistConfig = {
   key: 'root',
   version: 1,
-  storage: AsyncStorage,
+  storage: reduxStorage,
 };
 
 const rootReducer = combineReducers({
