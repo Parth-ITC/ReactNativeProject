@@ -29,15 +29,16 @@ const handleError = error => {
   }
 };
 
-export const getData = (path, params,isfruit) => {
+export const getData = (path, params, isfruit) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if(isfruit){
+      if (isfruit) {
         const {data, status} = await fruitapiInstance.get(path, {params});
+        console.log(data, status);
         if (status == 200) {
           resolve(handleResponse(data));
         }
-      }else{
+      } else {
         const {data, status} = await apiInstance.get(path, {params});
         if (status == 200) {
           resolve(handleResponse(data));
@@ -45,12 +46,13 @@ export const getData = (path, params,isfruit) => {
       }
       resolve([]);
     } catch (error) {
+      console.log('+++++++++++', error);
       reject(handleError(error));
     }
   });
 };
 export const getDatadiff = async (path, params) => {
-  return await apiInstance
+  return apiInstance
     .get(path, {params})
     .then(({data}) => data)
     .catch(err => {

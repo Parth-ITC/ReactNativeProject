@@ -8,15 +8,17 @@ import storage from '../../helpers/storage';
 import {FRUITS, ICONS} from '../../constants';
 import FruitList from '../../components/FruitList';
 import {addToCart, removeCart} from '../../redux/slices/cartSlice';
+import {cartAddChange, cartRemoveChange} from '../../redux/slices/cartSlice';
 const CartScreen = ({navigation}) => {
   const cartData = useSelector(state => state.cart.cartData);
   const dispatch = useDispatch();
 
   const handleCart = useCallback((item, type) => {
     if (type == 'ADD') {
-      dispatch(addToCart(item));
+      // dispatch(addToCart(item));
+      dispatch(cartAddChange(item));
     } else {
-      dispatch(removeCart(item));
+      dispatch(cartRemoveChange(item));
     }
   }, []);
   const totalPrice = useMemo(() => {

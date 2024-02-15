@@ -43,6 +43,9 @@ const FruitList = ({data, onPress, isfromCart}) => {
 
           {cartItem ? (
             <>
+              {isfromCart && (
+                <Text style={{marginHorizontal: 10}}>£{cartItem.total}</Text>
+              )}
               <View style={styles.btnView}>
                 <Icons
                   onPress={() => {
@@ -64,9 +67,6 @@ const FruitList = ({data, onPress, isfromCart}) => {
                   color={COLORS.btnColor}
                 />
               </View>
-              {isfromCart && (
-                <Text style={{marginLeft: 10}}>£{cartItem.total}</Text>
-              )}
             </>
           ) : (
             <TouchableOpacity
