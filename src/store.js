@@ -14,10 +14,11 @@ import counterReducer from './redux/slices/counterSlice';
 import cartReducer from './redux/slices/cartSlice';
 import {createLogger} from 'redux-logger';
 import reduxStorage from './reduxStorage';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 import rootSaga from './redux/sagas';
+import {pokemonApi} from './redux/services/pokemonApi';
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 const logger = createLogger({
   predicate: () => isDebuggingInChrome,
@@ -34,6 +35,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   counter: counterReducer,
   cart: cartReducer,
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -47,7 +49,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger,sagaMiddleware),
+    }).concat(logger, sagaMiddleware, pokemonApi.middleware),
   ],
 });
 

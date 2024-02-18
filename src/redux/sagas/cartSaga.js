@@ -12,19 +12,13 @@ import {
 
 function* addRequest() {
   while (true) {
-    console.log('LISTEN');
     const {payload} = yield take(cartAddChange);
-    console.log('LISTEN HERE');
-
     yield put(addToCart(payload));
   }
 }
 function* removeRequest() {
   while (true) {
-    console.log('LISTEN REMOVE');
     const {payload} = yield take(cartRemoveChange);
-    console.log('LISTEN REMOVE HERE', payload);
-
     yield put(removeCart(payload));
   }
 }

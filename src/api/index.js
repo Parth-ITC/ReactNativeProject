@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseURL, fruitURL} from './config';
+import {authURL, baseURL, fruitURL} from './config';
 
 const apiInstance = axios.create({
   baseURL: baseURL,
@@ -10,6 +10,13 @@ const apiInstance = axios.create({
 });
 const fruitapiInstance = axios.create({
   baseURL: fruitURL,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+});
+const authapiInstance = axios.create({
+  baseURL: authURL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -51,12 +58,28 @@ export const getData = (path, params, isfruit) => {
     }
   });
 };
-export const getDatadiff = async (path, params) => {
+export const getAuth = async (path, params) => {
   return apiInstance
     .get(path, {params})
     .then(({data}) => data)
     .catch(err => {
+      return err;
+    });
+};
+export const getDatadiff = async (path, params) => {
+  return authapiInstance
+    .get(path, {params})
+    .then(({data}) => data)
+    .catch(err => {
       throw axiosErrorToError(err);
+    });
+};
+export const postAuth = async (path, data, params) => {
+  return authapiInstance
+    .post(path, data, {params})
+    .then(({data}) => data)
+    .catch(err => {
+      return err;
     });
 };
 export const axiosErrorToError = err => {

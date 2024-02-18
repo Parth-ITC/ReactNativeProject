@@ -13,16 +13,16 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {IMAGES} from '../../../constants';
 import useAuth from '../../../hooks/useAuth';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginrequest} from '../../../redux/slices/authSlice';
+import {registerrequest} from '../../../redux/slices/authSlice';
 import { navigation } from '../../../navigation/rootNavigation';
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = useAuth();
   const {value} = useSelector(state => state.counter);
-  const onSignIn = () => {};
   const dispatch = useDispatch();
+  const onSignIn = () => {};
 
   return (
     <KeyboardAwareScrollView bounces={false} style={styles.container}>
@@ -53,17 +53,15 @@ const Login = () => {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          dispatch(
-            loginrequest({url: 'Users/login', data: {email, password}, auth: auth}),
-          );
+          dispatch(registerrequest({url: 'Users', data: {email, password}}));
         }}>
         <Text style={{color: 'white'}}>Submit</Text>
       </TouchableOpacity>
       <View style={styles.endView}>
-        <Text onPress={()=>{navigation.navigate('SignUp')}}>SignUp</Text>
+        <Text onPress={()=>{navigation.navigate('Login')}}>Login</Text>
       </View>
     </KeyboardAwareScrollView>
   );
 };
 
-export default Login;
+export default SignUp;

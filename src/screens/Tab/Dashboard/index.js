@@ -13,7 +13,6 @@ const Dashboard = ({navigation}) => {
   const [fruitData, setFruitdata] = useState([]);
   const cartData = useSelector(state => state.cart);
   const dispatch = useDispatch();
-
   useEffect(() => {
     getFruits();
   }, []);

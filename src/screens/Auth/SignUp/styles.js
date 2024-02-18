@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 5,
   },
-  endView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  endView:{
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });
 
 export default styles;

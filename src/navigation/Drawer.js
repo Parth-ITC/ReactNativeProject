@@ -5,6 +5,7 @@ import ListScreen from '../screens/ListScreen';
 import CustumDrawer from '../components/CustumDrawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNav from './TabNav';
+import PokemonScreen from '../screens/Pokemon';
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ const DrawerNav = props => {
       screenOptions={{headerShown: false, drawerType: 'front'}}
       drawerContent={CustumDrawer}>
       <Drawer.Screen name="Tab"  component={TabNav} />
-      <Drawer.Screen name="DeepScreen"  component={DeepScreen} />
+      <Drawer.Screen name="PokemonScreen"  component={PokemonScreen} />
     </Drawer.Navigator>
   );
 };

@@ -26,9 +26,9 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  const signIn = async () => {
-    setAuthData({token: '1234'});
-    await AsyncStorage.setItem('isLogin', JSON.stringify({token: '1234'}));
+  const signIn = async (userId) => {
+    setAuthData({token: userId});
+    await AsyncStorage.setItem('isLogin', JSON.stringify({token:userId}));
   };
 
   const signOut = async () => {
