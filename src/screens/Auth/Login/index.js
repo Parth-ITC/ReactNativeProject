@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -61,15 +62,24 @@ const Login = () => {
       </View>
       <TouchableOpacity
         style={styles.btnView}
-        onPress={async() => {
+        onPress={async () => {
           await analytics().logEvent('CLICK_SIGNIN', {
-            email
+            email,
           });
+          const callback = (error, response) => {
+            if (error) {
+              Alert.alert('Login Failed', error.message);
+            } else {
+              // Handle successful login, navigate to next screen or use response
+              console.log('Login successful:', response);
+            }
+          };
           dispatch(
             loginrequest({
               url: 'Users/login',
               data: {email, password},
               auth: auth,
+              callback,
             }),
           );
         }}>

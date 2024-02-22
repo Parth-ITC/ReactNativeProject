@@ -21,15 +21,17 @@ function* watchLoginRequest() {
   while (true) {
     const {payload} = yield take(loginrequest);
     console.log(payload);
+    const { callback } = payload;
     try {
       let response;
       response = yield call(callPostRequest, payload.url,payload.data);
-      console.log(response);
+      if (callback) callback(null, response);
       yield put(loginSuccess(response));
       if (response?.id) {
         payload.auth.signIn(response?.id);
       }
-    } catch (ex) {
+    } catch (err) {
+      if (callback) callback(null, err);
       yield put(loginFailure(ex));
     }
   }

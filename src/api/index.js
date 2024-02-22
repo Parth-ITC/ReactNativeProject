@@ -85,6 +85,14 @@ export const postAuth = async (path, data, params) => {
   //   }
   // }
   // console.log(accessToken,'accessToken');
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await authapiInstance.post(path, data, {params});
+      resolve(handleResponse(response.data));
+    } catch (error) {
+      reject(handleError(error));
+    }
+  });
   return authapiInstance
     .post(path, data, {params})
     .then(({data}) => data)
