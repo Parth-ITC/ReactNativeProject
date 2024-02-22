@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {authURL, baseURL, fruitURL} from './config';
+import storage from '../helpers/storage';
+import {select} from 'redux-saga/effects';
 
 const apiInstance = axios.create({
   baseURL: baseURL,
@@ -75,6 +77,14 @@ export const getDatadiff = async (path, params) => {
     });
 };
 export const postAuth = async (path, data, params) => {
+  // const accessToken = yield select(state => state.auth.userInfo.userId);
+  // let header = {}
+  // if(accessToken){
+  //   header={
+  //     'X-Access-Token': accessToken,
+  //   }
+  // }
+  // console.log(accessToken,'accessToken');
   return authapiInstance
     .post(path, data, {params})
     .then(({data}) => data)

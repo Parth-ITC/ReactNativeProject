@@ -6,6 +6,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import ListScreen from '../screens/ListScreen';
 import CartScreen from '../screens/CartScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import MapScreen from '../screens/MapScreen';
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
@@ -13,12 +14,14 @@ const AppStack = () => {
     headerShown: false,
   };
   return (
-    <Stack.Navigator screenOptions={navigationOptions}>
+    <Stack.Navigator initialRouteName='Dash' screenOptions={navigationOptions}>
       <Stack.Screen component={DrawerNav} name="Dash" />
       <Stack.Screen component={ListScreen} name="List" />
       <Stack.Screen component={DetailsScreen} name="Details" />
       <Stack.Screen component={CartScreen} name="Cart" />
       <Stack.Screen component={ProfileScreen} name="ProfileScreen" />
+      <Stack.Screen component={MapScreen} name="MapScreen" />
+
 
 
     </Stack.Navigator>

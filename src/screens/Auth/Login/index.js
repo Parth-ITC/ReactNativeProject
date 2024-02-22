@@ -7,14 +7,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {IMAGES} from '../../../constants';
 import useAuth from '../../../hooks/useAuth';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginrequest} from '../../../redux/slices/authSlice';
-import { navigation } from '../../../navigation/rootNavigation';
+import {navigation} from '../../../navigation/rootNavigation';
+import NotificationHelper from '../../../helpers/NotificationHelper';
+import analytics from '@react-native-firebase/analytics';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -23,6 +25,13 @@ const Login = () => {
   const {value} = useSelector(state => state.counter);
   const onSignIn = () => {};
   const dispatch = useDispatch();
+  useEffect(() => {
+    const getFcmToken = async () => {
+      const token = await NotificationHelper.getNewFCMToken();
+      console.log('Initial token:', token);
+    };
+    getFcmToken();
+  }, []);
 
   return (
     <KeyboardAwareScrollView bounces={false} style={styles.container}>
@@ -52,15 +61,27 @@ const Login = () => {
       </View>
       <TouchableOpacity
         style={styles.btnView}
-        onPress={() => {
+        onPress={async() => {
+          await analytics().logEvent('CLICK_SIGNIN', {
+            email
+          });
           dispatch(
-            loginrequest({url: 'Users/login', data: {email, password}, auth: auth}),
+            loginrequest({
+              url: 'Users/login',
+              data: {email, password},
+              auth: auth,
+            }),
           );
         }}>
         <Text style={{color: 'white'}}>Submit</Text>
       </TouchableOpacity>
       <View style={styles.endView}>
-        <Text onPress={()=>{navigation.navigate('SignUp')}}>SignUp</Text>
+        <Text
+          onPress={() => {
+            navigation.navigate('SignUp');
+          }}>
+          SignUp
+        </Text>
       </View>
     </KeyboardAwareScrollView>
   );

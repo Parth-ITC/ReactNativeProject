@@ -10,7 +10,6 @@ import React, {useMemo, useState} from 'react';
 import Header from '../../components/Header';
 import {ICONS} from '../../constants';
 import {navigation} from '../../navigation/rootNavigation';
-import EditProfileScreen from './EditProfile';
 import styles from './styles';
 import DatePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -64,7 +63,14 @@ const ProfileScreen = () => {
         : {label: 'Female', value: 'female'};
     }
   }, [profileData?.gender]);
-  console.log(getGender);
+
+  const getImage = useMemo(() => {
+    if (profileData?.image) {
+      return profileData?.image;
+    }else{
+        return 'https://amaxfireandsecurity.co.uk/wp-content/uploads/2023/12/profile-pic-MD.jpg'
+    }
+  }, [profileData?.image]);
 
   return (
     <View style={styles.container}>
@@ -84,7 +90,7 @@ const ProfileScreen = () => {
             }}
             style={styles.imageOuterview}>
             <Image
-              source={{uri: profileData?.image ?? ''}}
+              source={{uri: getImage}}
               style={styles.imageView}
             />
           </TouchableOpacity>
@@ -94,10 +100,11 @@ const ProfileScreen = () => {
             </View>
             <TextInput
               style={styles.input}
-              placeholder="Daniel"
+              placeholder="First Name"
               value={profileData.firstName}
               onChangeText={value => handleSetValue('firstName', value)}
               placeholderTextColor="#ccc"
+              autoCorrect={false}
             />
           </View>
           <View style={styles.formField}>
@@ -106,10 +113,12 @@ const ProfileScreen = () => {
             </View>
             <TextInput
               style={styles.input}
-              placeholder="Daniel"
+              placeholder="Last Name"
               value={profileData.lastName}
               onChangeText={value => handleSetValue('lastName', value)}
               placeholderTextColor="#ccc"
+              autoCorrect={false}
+
             />
           </View>
           <View style={styles.formField}>
@@ -150,6 +159,7 @@ const ProfileScreen = () => {
         modal
         open={open}
         mode="date"
+        maximumDate={new Date()}
         date={
           profileData?.birthday ? new Date(profileData?.birthday) : new Date()
         }

@@ -24,9 +24,10 @@ function* watchLoginRequest() {
     try {
       let response;
       response = yield call(callPostRequest, payload.url,payload.data);
+      console.log(response);
       yield put(loginSuccess(response));
-      if (response?.userId) {
-        payload.auth.signIn(response?.userId);
+      if (response?.id) {
+        payload.auth.signIn(response?.id);
       }
     } catch (ex) {
       yield put(loginFailure(ex));
@@ -44,6 +45,7 @@ function* watchRegisterRequest() {
       console.log(response, 'RESPONSSE');
       if (response.id) {
         navigation.replace('Login');
+        return true
       }
     } catch (ex) {
       yield put(registerFailure(ex));

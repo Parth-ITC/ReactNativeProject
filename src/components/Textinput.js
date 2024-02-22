@@ -23,6 +23,7 @@ export default function Textinput({ icon, error,touched, ...otherProps }) {
         <RNTextInput
           underlineColorAndroid='transparent'
           placeholderTextColor='rgba(34, 62, 75, 0.7)'
+          style={{paddingVertical:0,paddingHorizontal:0}}
           {...otherProps}
         />
       </View>

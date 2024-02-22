@@ -3,12 +3,15 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import styles from './styles';
 import {navigation} from '../../../navigation/rootNavigation';
+import Header from '../../../components/Header';
 
 const Settings = () => {
   const auth = useAuth();
   return (
     <View>
-      <Text>index</Text>
+      <Header
+        title={'Settings'}
+      />
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('ProfileScreen');

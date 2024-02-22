@@ -1,5 +1,5 @@
 import {View, Text, Button} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Header from '../../../components/Header';
 import {styles} from './styles';
@@ -8,10 +8,12 @@ import storage from '../../../helpers/storage';
 import {FRUITS, ICONS} from '../../../constants';
 import FruitList from '../../../components/FruitList';
 import {addToCart, removeCart} from '../../../redux/slices/cartSlice';
+import AuthContext from '../../../context/AuthContext';
 
 const Dashboard = ({navigation}) => {
   const [fruitData, setFruitdata] = useState([]);
   const cartData = useSelector(state => state.cart);
+  const {authData} = useContext(AuthContext)
   const dispatch = useDispatch();
   useEffect(() => {
     getFruits();
@@ -34,7 +36,7 @@ const Dashboard = ({navigation}) => {
       dispatch(removeCart(item));
     }
   }, []);
-
+console.log(authData);
   return (
     <View style={styles.container}>
       <Header

@@ -11,11 +11,10 @@ const AuthStack = () => {
     gestureEnabled: false,
   };
   return (
-    <Stack.Navigator initialRouteName='SignUp' screenOptions={navigationOptions}>
+    <Stack.Navigator initialRouteName='Login' screenOptions={navigationOptions}>
       <Stack.Group>
         <Stack.Screen component={Login} name="Login" />
         <Stack.Screen component={SignUp} name="SignUp" />
-
       </Stack.Group>
     </Stack.Navigator>
   );

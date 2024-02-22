@@ -39,13 +39,15 @@ const ImagePickerModal = ({visible, onClose, onImageSelected}) => {
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.error);
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = {uri: response.assets[0]?.uri};
-        onImageSelected(response.assets[0]?.uri);
+        const source = {uri: response?.assets[0]?.uri};
+        onImageSelected(response?.assets[0]?.uri);
       }
     });
   };

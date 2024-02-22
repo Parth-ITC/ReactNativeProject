@@ -12,6 +12,8 @@ import {
 import thunk from 'redux-thunk';
 import counterReducer from './redux/slices/counterSlice';
 import cartReducer from './redux/slices/cartSlice';
+import authReducer from './redux/slices/authSlice';
+
 import {createLogger} from 'redux-logger';
 import reduxStorage from './reduxStorage';
 import createSagaMiddleware from 'redux-saga';
@@ -35,6 +37,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   counter: counterReducer,
   cart: cartReducer,
+  auth:authReducer,
   [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
 

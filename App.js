@@ -24,4 +24,4 @@ const App = () => {
     </ErrorBoundary>
   );
 };
-export default Sentry.wrap(App);
+export default App;
