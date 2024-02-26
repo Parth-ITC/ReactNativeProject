@@ -120,12 +120,12 @@ const FirebaseLogin = () => {
             SignUp
           </Text>
         </View>
-        <Button
+        {/* <Button
           title="Display Notification"
           onPress={() => {
             onDisplayNotification();
           }}
-        />
+        /> */}
       </KeyboardAwareScrollView>
       <Loader visible={isLoading} />
     </>

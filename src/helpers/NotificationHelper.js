@@ -17,6 +17,7 @@ class NotificationHelper {
         name: 'Default Channel',
         importance:AndroidImportance.HIGH,
       });
+
     // Add a handler for receiving notifications while the app is in foreground
     messaging().onMessage(async remoteMessage => {
       // Process your remote message here
@@ -100,7 +101,6 @@ class NotificationHelper {
 
   async showNotification(title, body,channelId) {
     // Implement your notification display logic here
-    // You can use libraries like react-native-push-notification or create your own notification component
     await notifee.displayNotification({
       title: title,
       body: body,
