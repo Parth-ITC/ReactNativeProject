@@ -12,7 +12,28 @@
           "package_name": "com.itc.reactnativeproject"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1091621098471-5s1kvp996a5oo0qvcnp5fac8c1653i20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itc.reactnativeproject",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1091621098471-iq4cmd209opa0pdqbf8ique1otcn4j1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itc.reactnativeproject",
+            "certificate_hash": "a1ba0c1814ae07fcd3d5b6413fa1fddac1e80aaf"
+          }
+        },
+        {
+          "client_id": "1091621098471-ldpj4m52c4jstcrvrn4h7tbrud79q9f3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD-831aXPfgLKH51MuQOlABhxMfATB5BsA"
@@ -20,7 +41,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091621098471-ldpj4m52c4jstcrvrn4h7tbrud79q9f3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1091621098471-udkp4320n97lffelksk568camh24egt9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.itc.reactnativeproject"
+              }
+            }
+          ]
         }
       }
     }

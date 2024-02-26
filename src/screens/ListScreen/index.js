@@ -15,15 +15,20 @@ import ModalView from '../../components/ModalView';
 import {useEffect, useState} from 'react';
 import {getData, getDatadiff} from '../../api';
 import storage from '../../helpers/storage';
+import usePostData from '../../hooks/usePostData';
+import WithDataFetching from './WithDataFetching';
 
-const ListScreen = ({route, navigation}) => {
+const ListScreen = (props) => {
+  const { route, navigation,postData,error,loading} = props
   const [isModalopen, setIsmodalOpen] = useState(false);
-  const [bookData, setBookdata] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
+  const [bookData, setBookdata] = useState(postData ?? []);
+  console.log(postData,error);
+
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    // fetchData();
+    setBookdata(postData)
+  }, [postData]);
 
   const fetchData = async () => {
     setIsloading(true);
@@ -60,7 +65,7 @@ const ListScreen = ({route, navigation}) => {
 
   const onModalChange = () => setIsmodalOpen(previousState => !previousState);
   const addNewData = newData => {
-    setBookdata([newData, ...bookData]);
+    // setBookdata([newData, ...bookData]);
     storage.set('BOOKS', [newData, ...bookData]);
     onModalChange();
   };
@@ -74,7 +79,7 @@ const ListScreen = ({route, navigation}) => {
         onRightPress={onModalChange}
       />
       <View style={{flex: 1}}>
-        {isLoading ? (
+        {loading ? (
           <ActivityIndicator animating size={'large'} />
         ) : (
           <FlatList
@@ -98,4 +103,4 @@ const ListScreen = ({route, navigation}) => {
   );
 };
 
-export default ListScreen;
+export default WithDataFetching()(ListScreen);

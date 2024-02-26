@@ -88,7 +88,7 @@ const Login = () => {
       <View style={styles.endView}>
         <Text
           onPress={() => {
-            navigation.navigate('SignUp');
+            navigation.navigate('FirebaseSignUp');
           }}>
           SignUp
         </Text>
