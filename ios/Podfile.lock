@@ -1062,6 +1062,8 @@ PODS:
   - react-native-mmkv (2.11.0):
     - MMKV (>= 1.2.13)
     - React-Core
+  - react-native-notification-sounds (0.5.8):
+    - React
   - react-native-safe-area-context (4.8.2):
     - React-Core
   - react-native-ssl-public-key-pinning (1.1.4):
@@ -1332,6 +1334,7 @@ DEPENDENCIES:
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
+  - react-native-notification-sounds (from `../node_modules/react-native-notification-sounds`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-ssl-public-key-pinning (from `../node_modules/react-native-ssl-public-key-pinning`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
@@ -1469,6 +1472,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
+  react-native-notification-sounds:
+    :path: "../node_modules/react-native-notification-sounds"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-ssl-public-key-pinning:
@@ -1600,6 +1605,7 @@ SPEC CHECKSUMS:
   react-native-image-picker: e3b3e0b18a3a33c16a98e4e9c291327a9c3d6f36
   react-native-maps: 72a8a903f8a1b53e2c777ba79102078ab502e0bf
   react-native-mmkv: e97c0c79403fb94577e5d902ab1ebd42b0715b43
+  react-native-notification-sounds: 739f8adc4010138e4cd72fd4e3220e7df758473f
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-ssl-public-key-pinning: 88a68b47d60d7621c123015e2b24717dacb0571a
   React-nativeconfig: 4dda3cbbdd1c4ce38450bb10b34b3e54120e4a91

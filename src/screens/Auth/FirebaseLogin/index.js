@@ -22,6 +22,7 @@ import analytics from '@react-native-firebase/analytics';
 import Loader from '../../../components/Loader';
 import {loginUser} from '../../../helpers/firebaseAuth';
 import notifee, {AndroidImportance} from '@notifee/react-native';
+import NotificationSounds, { playSampleSound } from  'react-native-notification-sounds';
 
 const FirebaseLogin = () => {
   const [email, setEmail] = useState('');
@@ -32,6 +33,10 @@ const FirebaseLogin = () => {
     const getFcmToken = async () => {
       const token = await NotificationHelper.getNewFCMToken();
       console.log('Initial token:', token);
+      // const soundsList = await NotificationSounds.getNotifications(
+      //   'notification',
+      // );
+      // playSampleSound(soundsList[11])
     };
     getFcmToken();
   }, []);
@@ -49,14 +54,17 @@ const FirebaseLogin = () => {
   async function onDisplayNotification() {
     // Request permissions (required for iOS)
     await notifee.requestPermission();
-
+    const soundsList = await NotificationSounds.getNotifications(
+      'notification',
+    );
     // Create a channel (required for Android)
     const channelId = await notifee.createChannel({
       id: '1234',
       name: 'Default Channel',
       importance: AndroidImportance.HIGH,
+      // sound:soundsList[11].url,
     });
-
+// console.log(soundsList[11].url);
     // Display a notification
     await notifee.displayNotification({
       title: `<p style="color: #4caf50;"><b>${'title'}</span></p></b></p> &#128576`,
@@ -112,12 +120,12 @@ const FirebaseLogin = () => {
             SignUp
           </Text>
         </View>
-        {/* <Button
+        <Button
           title="Display Notification"
           onPress={() => {
             onDisplayNotification();
           }}
-        /> */}
+        />
       </KeyboardAwareScrollView>
       <Loader visible={isLoading} />
     </>

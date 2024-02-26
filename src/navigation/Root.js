@@ -19,7 +19,7 @@ const Root = () => {
     NotificationHelper.initialize()
     const subscription = addSslPinningErrorListener(error => {
       // Triggered when an SSL pinning error occurs due to pin mismatch
-      console.log(error.serverHostname);
+      console.log(error,'😂');
     });
     return () => {
       subscription.remove();
