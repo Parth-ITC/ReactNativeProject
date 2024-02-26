@@ -1,5 +1,6 @@
 import {PermissionsAndroid, Platform} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import notifee,{AndroidImportance} from '@notifee/react-native';
 
 class NotificationHelper {
   async initialize() {
@@ -11,7 +12,11 @@ class NotificationHelper {
         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
       );
     }
-
+    const channelId = await notifee.createChannel({
+        id: '1234',
+        name: 'Default Channel',
+        importance:AndroidImportance.HIGH,
+      });
     // Add a handler for receiving notifications while the app is in foreground
     messaging().onMessage(async remoteMessage => {
       // Process your remote message here
@@ -23,6 +28,7 @@ class NotificationHelper {
       this.showNotification(
         remoteMessage.notification.title,
         remoteMessage.notification.body,
+        channelId
       );
     });
 
@@ -92,9 +98,21 @@ class NotificationHelper {
     }
   };
 
-  showNotification(title, body) {
+  async showNotification(title, body,channelId) {
     // Implement your notification display logic here
     // You can use libraries like react-native-push-notification or create your own notification component
+    await notifee.displayNotification({
+      title: title,
+      body: body,
+      android: {
+        channelId:'1234',
+        // smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+        // pressAction is needed if you want the notification to open the app when pressed
+        pressAction: {
+          id: 'default',
+        },
+    },
+    });
     console.log('Notification received:', title, body);
   }
 }

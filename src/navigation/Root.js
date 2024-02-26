@@ -9,12 +9,14 @@ import SplashScreen from '../screens/Splash/SplashScreen';
 import {navigationRef} from './rootNavigation';
 import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
 import { useEffect } from 'react';
+import NotificationHelper from '../helpers/NotificationHelper';
 
 const Stack = createNativeStackNavigator();
 
 const Root = () => {
   const {authData, loading} = useAuth();
   useEffect(() => {
+    NotificationHelper.initialize()
     const subscription = addSslPinningErrorListener(error => {
       // Triggered when an SSL pinning error occurs due to pin mismatch
       console.log(error.serverHostname);

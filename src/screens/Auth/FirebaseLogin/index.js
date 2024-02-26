@@ -1,5 +1,6 @@
 import {
   Alert,
+  Button,
   Image,
   ScrollView,
   StyleSheet,
@@ -20,6 +21,7 @@ import NotificationHelper from '../../../helpers/NotificationHelper';
 import analytics from '@react-native-firebase/analytics';
 import Loader from '../../../components/Loader';
 import {loginUser} from '../../../helpers/firebaseAuth';
+import notifee, {AndroidImportance} from '@notifee/react-native';
 
 const FirebaseLogin = () => {
   const [email, setEmail] = useState('');
@@ -39,11 +41,38 @@ const FirebaseLogin = () => {
     try {
       await loginUser(email, password);
     } catch (error) {
-      Alert.alert(error.message)
+      Alert.alert(error.message);
     } finally {
       setIsloading(false);
     }
   };
+  async function onDisplayNotification() {
+    // Request permissions (required for iOS)
+    await notifee.requestPermission();
+
+    // Create a channel (required for Android)
+    const channelId = await notifee.createChannel({
+      id: '1234',
+      name: 'Default Channel',
+      importance: AndroidImportance.HIGH,
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: `<p style="color: #4caf50;"><b>${'title'}</span></p></b></p> &#128576`,
+      body: 'Main body content of the notification',
+      android: {
+        channelId,
+        // pressAction is needed if you want the notification to open the app when pressed
+        pressAction: {
+          id: 'default',
+        },
+        largeIcon:
+          'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg',
+        // importance: AndroidImportance.HIGH
+      },
+    });
+  }
 
   return (
     <>
@@ -83,6 +112,12 @@ const FirebaseLogin = () => {
             SignUp
           </Text>
         </View>
+        {/* <Button
+          title="Display Notification"
+          onPress={() => {
+            onDisplayNotification();
+          }}
+        /> */}
       </KeyboardAwareScrollView>
       <Loader visible={isLoading} />
     </>
