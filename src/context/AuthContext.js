@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useState, useContext, useEffect} from 'react';
+import auth from '@react-native-firebase/auth';
 
 const AuthContext = createContext();
 
@@ -9,8 +10,20 @@ export const AuthProvider = ({children}) => {
 
   useEffect(() => {
     setTimeout(() => {
-        loadData();
+      loadData();
     }, 2000);
+  }, []);
+
+  const onAuthStateChanged = async user => {
+    if(user){
+      setAuthData(user);
+      await AsyncStorage.setItem('isLogin', JSON.stringify(user));
+    }
+  };
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
   }, []);
 
   const loadData = async () => {
@@ -26,9 +39,9 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  const signIn = async (userId) => {
+  const signIn = async userId => {
     setAuthData({token: userId});
-    await AsyncStorage.setItem('isLogin', JSON.stringify({token:userId}));
+    await AsyncStorage.setItem('isLogin', JSON.stringify({token: userId}));
   };
 
   const signOut = async () => {

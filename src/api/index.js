@@ -2,7 +2,23 @@ import axios from 'axios';
 import {authURL, baseURL, fruitURL} from './config';
 import storage from '../helpers/storage';
 import {select} from 'redux-saga/effects';
-
+import {initializeSslPinning} from 'react-native-ssl-public-key-pinning';
+initializeSslPinning({
+  'jsonplaceholder.typicode.com': {
+    includeSubdomains: true,
+    publicKeyHashes: [
+      '5XrDvz8lJLDcHeTEDpBa7ozX/3ON7c/JERg2Bz/sCTE=',
+      // '5XrDvz8lJLDcHeTEDpBa7ozX/3ON7c/JERg2Bz/sCuE=',
+      '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+    ],
+  },
+})
+  .then(success => {
+    console.log(success);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 const apiInstance = axios.create({
   baseURL: baseURL,
   headers: {
@@ -23,6 +39,7 @@ const authapiInstance = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
+  
 });
 
 const handleResponse = response => {
