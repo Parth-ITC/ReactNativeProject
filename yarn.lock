@@ -1553,6 +1553,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@notifee/react-native@^7.8.2":
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.8.2.tgz#72d3199ae830b4128ddaef3c1c2f11604759c9c4"
+  integrity sha512-VG4IkWJIlOKqXwa3aExC3WFCVCGCC9BA55Ivg0SMRfEs+ruvYy/zlLANcrVGiPtgkUEryXDhA8SXx9+JcO8oLA==
+
 "@react-native-async-storage/async-storage@^1.21.0":
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.21.0.tgz#d7e370028e228ab84637016ceeb495878b7a44c8"
@@ -6172,6 +6177,11 @@ react-native-mmkv@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-2.11.0.tgz#51b9985f6a5c09fe9c16d8c1861cc2901856ace1"
   integrity sha512-28PdUHjZJmAw3q+8zJDAAdohnZMpDC7WgRUJxACOMkcmJeqS3u5cKS/lSq2bhf1CvaeIiHYHUWiyatUjMRCDQQ==
+
+react-native-notification-sounds@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/react-native-notification-sounds/-/react-native-notification-sounds-0.5.8.tgz#f65f6da1a7c453a3a4f5212629cbe97731d305fb"
+  integrity sha512-pvqJPwCGMvJzeCXMGlkIfbZP3t5vVJw2+8H83SN08g9L3l528BMnlRf99MArJN0qJwusxGFvKat6srNzPayAnA==
 
 react-native-reanimated@^3.6.2:
   version "3.6.2"

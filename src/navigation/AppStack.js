@@ -10,6 +10,7 @@ import MapScreen from '../screens/MapScreen';
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
+
   const navigationOptions = {
     headerShown: false,
   };

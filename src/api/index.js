@@ -8,13 +8,13 @@ initializeSslPinning({
     includeSubdomains: true,
     publicKeyHashes: [
       '5XrDvz8lJLDcHeTEDpBa7ozX/3ON7c/JERg2Bz/sCTE=',
-      // '5XrDvz8lJLDcHeTEDpBa7ozX/3ON7c/JERg2Bz/sCuE=',
+      // '5XrDvz8lJLDcHeTEDpBa7ozX/3ON7c/JERg2Bz/sCuE=asdas',
       '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
     ],
   },
 })
   .then(success => {
-    console.log(success);
+    console.log(success,'asd');
   })
   .catch(err => {
     console.log(err);
