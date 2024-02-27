@@ -22,7 +22,6 @@ const ListScreen = (props) => {
   const { route, navigation,postData,error,loading} = props
   const [isModalopen, setIsmodalOpen] = useState(false);
   const [bookData, setBookdata] = useState(postData ?? []);
-  console.log(postData,error);
 
 
   useEffect(() => {

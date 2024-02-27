@@ -36,7 +36,7 @@ const Dashboard = ({navigation}) => {
       dispatch(removeCart(item));
     }
   }, []);
-console.log(authData);
+
   return (
     <View style={styles.container}>
       <Header

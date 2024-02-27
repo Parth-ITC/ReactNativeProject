@@ -1,4 +1,5 @@
 import {
+  Button,
   Image,
   StyleSheet,
   Text,
@@ -6,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useMemo, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import Header from '../../components/Header';
 import {ICONS} from '../../constants';
 import {navigation} from '../../navigation/rootNavigation';
@@ -15,6 +16,14 @@ import DatePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import ImagePickerModal from '../../components/ImagepickerModal';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import CustumButton from '../../components/CustumButton';
+import moment from 'moment';
+import AuthContext from '../../context/AuthContext';
+import FirestoreHelper from '../../helpers/FireStoreHelper';
+import useFirestoreListener from '../../hooks/useFirestoreListener';
+import Loader from '../../components/Loader';
+import {isObjectEmpty} from '../../helpers/helper';
+import withLoader from '../../hoc/withLoader';
 
 const ProfileData = [
   {title: 'firstName', type: 'text'},
@@ -28,7 +37,19 @@ const items = [
   {label: 'Female', value: 'female'},
 ];
 
-const ProfileScreen = () => {
+const ProfileScreen = props => {
+  const {setLoading} = props;
+  const {authData} = useContext(AuthContext);
+  const {
+    data: userData,
+    error,
+    loading,
+  } = useFirestoreListener('Users', authData?.uid);
+
+  useEffect(()=>{
+    setLoading(loading)
+  },[loading])
+
   const [profileData, setProfileData] = useState({
     firstName: '',
     lastName: '',
@@ -37,9 +58,17 @@ const ProfileScreen = () => {
     location: '',
     image: '',
   });
+
   const [open, setOpen] = useState(false);
   const [openPicker, setOpenPicker] = useState(false);
   const [openImagePicker, setImagePicker] = useState(false);
+
+
+  useEffect(() => {
+    if (!isObjectEmpty(userData)) {
+      setProfileData({...userData});
+    }
+  }, [userData]);
 
   const handleSetValue = (key, value) => {
     setProfileData({
@@ -50,9 +79,8 @@ const ProfileScreen = () => {
 
   const getDate = useMemo(() => {
     if (profileData?.birthday) {
-      let tempDate = profileData?.birthday.toString().split(' ');
       return profileData?.birthday !== ''
-        ? `${tempDate[0]} ${tempDate[1]} ${tempDate[2]} ${tempDate[3]}`
+        ? moment(profileData?.birthday).format('DD MMM YYYY')
         : '';
     }
   }, [profileData?.birthday]);
@@ -67,10 +95,25 @@ const ProfileScreen = () => {
   const getImage = useMemo(() => {
     if (profileData?.image) {
       return profileData?.image;
-    }else{
-        return 'https://amaxfireandsecurity.co.uk/wp-content/uploads/2023/12/profile-pic-MD.jpg'
+    } else {
+      return 'https://amaxfireandsecurity.co.uk/wp-content/uploads/2023/12/profile-pic-MD.jpg';
     }
   }, [profileData?.image]);
+
+  const updateProfile = async () => {
+    setLoading(true);
+    try {
+      await FirestoreHelper.setDocument(`Users/${authData?.uid}`, {
+        ...profileData,
+        email: authData?.email,
+        id: authData?.uid,
+      });
+    } catch (err) {
+      console.log('Error in updating the user data', err);
+    } finally {
+      setLoading(false)
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -82,17 +125,16 @@ const ProfileScreen = () => {
           navigation.goBack(null);
         }}
       />
-      <KeyboardAwareScrollView bounces={false} style={styles.container}>
-        <View style={styles.container}>
+      <KeyboardAwareScrollView
+        bounces={false}
+        contentContainerStyle={styles.container}>
+        <View key={'scroolIndex'} style={styles.container}>
           <TouchableOpacity
             onPress={() => {
               setImagePicker(true);
             }}
             style={styles.imageOuterview}>
-            <Image
-              source={{uri: getImage}}
-              style={styles.imageView}
-            />
+            <Image source={{uri: getImage}} style={styles.imageView} />
           </TouchableOpacity>
           <View style={styles.formField}>
             <View style={styles.labelView}>
@@ -118,7 +160,6 @@ const ProfileScreen = () => {
               onChangeText={value => handleSetValue('lastName', value)}
               placeholderTextColor="#ccc"
               autoCorrect={false}
-
             />
           </View>
           <View style={styles.formField}>
@@ -154,6 +195,12 @@ const ProfileScreen = () => {
             />
           </View>
         </View>
+        <CustumButton
+          btnName={'Update Profile'}
+          onPress={() => {
+            updateProfile();
+          }}
+        />
       </KeyboardAwareScrollView>
       <DatePicker
         modal
@@ -191,4 +238,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default withLoader(ProfileScreen);
