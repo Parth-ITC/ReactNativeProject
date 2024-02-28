@@ -5,8 +5,9 @@ import ListScreen from '../screens/ListScreen';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import Dashboard from '../screens/Tab/Dashboard';
 import Settings from '../screens/Tab/Settings';
-import Profile from '../screens/Tab/Profile';
+import Profile from '../screens/Tab/Chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import Chat from '../screens/Tab/Chat';
 const Tab = createBottomTabNavigator();
 
 const TabNav = props => {
@@ -25,12 +26,12 @@ const TabNav = props => {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ListScreen}
+        name="Chat"
+        component={Chat}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Chat',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="chat" color={color} size={size} />
           ),
         }}
       />

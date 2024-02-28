@@ -5,7 +5,6 @@ const useFirestoreListener = (collectionPath, documentPath) => {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     let subscriber;
     const fetchIntialData = async () => {

@@ -18,7 +18,8 @@ class FirestoreHelper {
       if (documentSnapshot.exists) {
         return documentSnapshot.data();
       } else {
-        throw new Error('Document does not exist.');
+        // throw new Error('Document does not exist.');
+        return null
       }
     } catch (error) {
       throw error;
