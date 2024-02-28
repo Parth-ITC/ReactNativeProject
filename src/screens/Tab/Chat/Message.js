@@ -17,28 +17,37 @@ import {navigation} from '../../../navigation/rootNavigation';
 import i18n from '../../../assets/locales/i18n';
 
 import moment from 'moment';
+import useFirestoreCollectionSnapshot from '../../../hooks/useFirestoreCollectionSnapshot';
 const MessageScreen = ({route}) => {
   const {chatId, name} = route.params;
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
   const {authData} = useContext(AuthContext);
+    const queryFn = ref => ref.orderBy('timestamp', 'desc');
+    const {
+      data: messagesData,
+      loading,
+      error,
+    } = useFirestoreCollectionSnapshot(`Chats/${chatId}/messages`, '', queryFn,[]);
+    useEffect(()=>{
+      setMessages(messagesData)
+    },[messagesData])
+//   useEffect(() => {
+//     const unsubscribe = firestore()
+//       .collection('Chats')
+//       .doc(chatId)
+//       .collection('messages')
+//       .orderBy('timestamp', 'desc')
+//       .onSnapshot(snapshot => {
+//         const messagesData = snapshot.docs.map(doc => ({
+//           id: doc.id,
+//           ...doc.data(),
+//         }));
+//         setMessages(messagesData);
+//       });
 
-  useEffect(() => {
-    const unsubscribe = firestore()
-      .collection('Chats')
-      .doc(chatId)
-      .collection('messages')
-      .orderBy('timestamp', 'desc')
-      .onSnapshot(snapshot => {
-        const messagesData = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setMessages(messagesData);
-      });
-
-    return () => unsubscribe();
-  }, [chatId]);
+//     return () => unsubscribe();
+//   }, [chatId]);
 
   const sendMessage = async () => {
     if (text.trim() === '') return;
@@ -55,7 +64,7 @@ const MessageScreen = ({route}) => {
         });
       firestore().collection('Chats').doc(chatId).update({
         lastUpdate: firestore.FieldValue.serverTimestamp(),
-        lastMessage: text
+        lastMessage: text,
       });
       setText('');
     } catch (error) {
@@ -92,11 +101,15 @@ const MessageScreen = ({route}) => {
                         ? 'flex-end'
                         : 'flex-start',
                     backgroundColor:
-                      item.senderId === authData?.uid ? COLORS.headerColor : '#e0e0e0' ,
+                      item.senderId === authData?.uid
+                        ? COLORS.headerColor
+                        : '#e0e0e0',
                   },
                 ]}>
                 <Text style={styles.messageText}>{item.text}</Text>
-                <Text style={styles.messageTime}>{moment(item?.timestamp?.toDate()).format('hh:mm a')}</Text>
+                <Text style={styles.messageTime}>
+                  {moment(item?.timestamp?.toDate()).format('hh:mm a')}
+                </Text>
               </View>
             )}
             inverted
@@ -122,7 +135,9 @@ const MessageScreen = ({route}) => {
                 backgroundColor: COLORS.btnColor,
                 borderRadius: 5,
               }}>
-              <Text style={{color: 'white'}}>{i18n.t('messageScreen.sendButton')}</Text>
+              <Text style={{color: 'white'}}>
+                {i18n.t('messageScreen.sendButton')}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

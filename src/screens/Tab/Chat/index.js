@@ -18,6 +18,7 @@ import firestore from '@react-native-firebase/firestore';
 import FirestoreHelper from '../../../helpers/FireStoreHelper';
 import {getChatId} from '../../../helpers/helper';
 import {navigation} from '../../../navigation/rootNavigation';
+import { useFocusEffect } from '@react-navigation/native';
 const Chat = props => {
   const [ismodalOpen, setIsmodalOpen] = useState(false);
   const {authData} = useContext(AuthContext);
@@ -27,21 +28,22 @@ const Chat = props => {
     data: userData,
     loading,
     error,
-  } = useFirestoreCollectionSnapshot('Users', authData?.uid, query1Fn);
+  } = useFirestoreCollectionSnapshot('Users', authData?.uid, query1Fn, []);
   const queryFn = ref => ref.where('user1Id', '==', authData?.uid);
   const query2Fn = ref => ref.where('user2Id', '==', authData?.uid);
   const {
     data: chat1Data,
     loading: chatloading,
     error: chatError,
-  } = useFirestoreCollectionSnapshot('Chats', authData?.uid, queryFn);
+  } = useFirestoreCollectionSnapshot('Chats', authData?.uid, queryFn, []);
 
   const {data: chat2Data} = useFirestoreCollectionSnapshot(
     'Chats',
     authData?.uid,
     query2Fn,
+    [],
   );
-
+  
   const allChatdata = useMemo(() => {
     const mergedChats = [...chat2Data, ...chat1Data];
     return mergedChats.sort((a, b) => {
