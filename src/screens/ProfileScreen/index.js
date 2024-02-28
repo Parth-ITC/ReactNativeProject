@@ -80,7 +80,7 @@ const ProfileScreen = props => {
   const getDate = useMemo(() => {
     if (profileData?.birthday) {
       return profileData?.birthday !== ''
-        ? moment(profileData?.birthday).format('DD MMM YYYY')
+        ? moment(profileData?.birthday?.toDate()).format('DD MMM YYYY')
         : '';
     }
   }, [profileData?.birthday]);
@@ -208,7 +208,7 @@ const ProfileScreen = props => {
         mode="date"
         maximumDate={new Date()}
         date={
-          profileData?.birthday ? new Date(profileData?.birthday) : new Date()
+          profileData?.birthday ? new Date(profileData?.birthday?.toDate()) : new Date()
         }
         onConfirm={date => {
           setOpen(false);

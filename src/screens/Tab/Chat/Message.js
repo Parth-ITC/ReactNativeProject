@@ -14,6 +14,7 @@ import AuthContext from '../../../context/AuthContext';
 import Header from '../../../components/Header';
 import {COLORS, ICONS} from '../../../constants';
 import {navigation} from '../../../navigation/rootNavigation';
+import i18n from '../../../assets/locales/i18n';
 
 import moment from 'moment';
 const MessageScreen = ({route}) => {
@@ -121,7 +122,7 @@ const MessageScreen = ({route}) => {
                 backgroundColor: COLORS.btnColor,
                 borderRadius: 5,
               }}>
-              <Text style={{color: 'white'}}>Send</Text>
+              <Text style={{color: 'white'}}>{i18n.t('messageScreen.sendButton')}</Text>
             </TouchableOpacity>
           </View>
         </View>
