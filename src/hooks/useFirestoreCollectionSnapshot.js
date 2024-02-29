@@ -41,7 +41,6 @@ const useFirestoreCollectionSnapshot = (
               id: doc.id,
               ...doc.data(),
             }));
-            console.log('HOW', updatedData);
             //   const filteredData = currentUserUid
             //     ? updatedData.filter(user => user.id !== currentUserUid)
             //     : updatedData;

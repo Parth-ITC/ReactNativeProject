@@ -1,3 +1,5 @@
+import storage from '@react-native-firebase/storage';
+
 const isObjectEmpty = objectName => {
   return (
     objectName &&
@@ -32,4 +34,23 @@ const renderMessageTime = timestamp => {
   return messageTime.toLocaleString(); // Show full date if more than 24 hours
 };
 
-export {isObjectEmpty, getChatId, renderMessageTime};
+const uploadFileToFirebaseStorage = async (storagePath, document) => {
+    try {
+      // Create reference to the storage path
+      const storageRef = storage().ref(storagePath); // Specify the storage path
+  
+      // Upload file to Firebase Storage
+      await storageRef.putFile(document);
+  
+      // Get download URL
+      const downloadURL = await storageRef.getDownloadURL();
+      
+      return downloadURL;
+    } catch (error) {
+      console.error('Error uploading file to Firebase Storage:', error);
+      throw error;
+    }
+  };
+  
+
+export {isObjectEmpty, getChatId, renderMessageTime,uploadFileToFirebaseStorage};

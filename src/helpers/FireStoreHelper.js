@@ -1,4 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 class FirestoreHelper {
   // Get a reference to a Firestore collection
@@ -19,7 +20,7 @@ class FirestoreHelper {
         return documentSnapshot.data();
       } else {
         // throw new Error('Document does not exist.');
-        return null
+        return null;
       }
     } catch (error) {
       throw error;
@@ -76,26 +77,54 @@ class FirestoreHelper {
   }
 
   // Listen for Updates
-  static listenForUpdates = (collectionPath) => {
+  static listenForUpdates = collectionPath => {
     return new Promise((resolve, reject) => {
-      const unsubscribe = firestore().collection(collectionPath).onSnapshot(
-        (querySnapshot) => {
-          const documents = [];
-          querySnapshot.forEach((documentSnapshot) => {
-            documents.push({ id: documentSnapshot.id, ...documentSnapshot.data() });
-          });
-          resolve(documents);
-        },
-        (error) => {
-          reject(error);
-        }
-      );
+      const unsubscribe = firestore()
+        .collection(collectionPath)
+        .onSnapshot(
+          querySnapshot => {
+            const documents = [];
+            querySnapshot.forEach(documentSnapshot => {
+              documents.push({
+                id: documentSnapshot.id,
+                ...documentSnapshot.data(),
+              });
+            });
+            resolve(documents);
+          },
+          error => {
+            reject(error);
+          },
+        );
 
       // Return unsubscribe function
       return unsubscribe;
     });
   };
-  
+
+  static uploadDocToFirebaseStorage = async (storagePath, document) => {
+    try {
+
+      // Create reference to the storage path
+      const storageRef = storage().ref().child(storagePath);
+
+      // Convert image URI to Blob
+      const response = await fetch(document);
+      const blob = await response.blob();
+
+      // Upload image to Firebase Storage
+      const snapshot = await storageRef.put(blob);
+
+
+      // Get download URL
+      const downloadURL = await storageRef.getDownloadURL();
+
+      return downloadURL;
+    } catch (error) {
+      console.error('Error uploading image to Firebase Storage:', error);
+      throw error;
+    }
+  };
 }
 
 export default FirestoreHelper;

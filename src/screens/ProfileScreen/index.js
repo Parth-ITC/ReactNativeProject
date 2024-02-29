@@ -230,7 +230,7 @@ const ProfileScreen = props => {
           setImagePicker(false);
           setProfileData(prevState => ({
             ...prevState,
-            image: value,
+            image: value?.assets[0]?.uri,
           }));
         }}
       />

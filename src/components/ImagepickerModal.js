@@ -13,9 +13,10 @@ const ImagePickerModal = ({visible, onClose, onImageSelected}) => {
         skipBackup: true,
         path: 'images',
       },
+      quality:0.1
     };
     launchImageLibrary(options, response => {
-      console.log('Response = ', response.assets[0]?.uri);
+      // console.log('Response = ', response.assets[0]?.uri);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -25,7 +26,7 @@ const ImagePickerModal = ({visible, onClose, onImageSelected}) => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = {uri: response.assets[0]?.uri};
-        onImageSelected(response.assets[0]?.uri);
+        onImageSelected(response.assets[0]);
       }
     });
   };
@@ -47,7 +48,7 @@ const ImagePickerModal = ({visible, onClose, onImageSelected}) => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = {uri: response?.assets[0]?.uri};
-        onImageSelected(response?.assets[0]?.uri);
+        onImageSelected(response?.assets[0]);
       }
     });
   };
